@@ -37,10 +37,10 @@ int CFNode::getSize()
 {
 
     if(leaf)
-        return entries.size();
+        return static_cast<int>(entries.size());
 
     else
-        return children.size();
+        return static_cast<int>(children.size());
 
 }
 
@@ -50,10 +50,10 @@ bool CFNode::isOverflow()
 {
 
     if(leaf)
-        return entries.size() > maxEntries;
+        return entries.size() > static_cast<size_t>(maxEntries);
 
     else
-        return children.size() > maxEntries;
+        return children.size() > static_cast<size_t>(maxEntries);
 
 }
 
@@ -124,7 +124,7 @@ int CFNode::findClosestCF(vector<double> point)
 
 
 
-    for(int i=0;i<entries.size();i++)
+    for(size_t i=0;i<entries.size();i++)
     {
 
         vector<double> centroid =
@@ -136,7 +136,7 @@ int CFNode::findClosestCF(vector<double> point)
 
 
 
-        for(int j=0;j<point.size();j++)
+        for(size_t j=0;j<point.size();j++)
         {
 
             distance +=
@@ -154,7 +154,7 @@ int CFNode::findClosestCF(vector<double> point)
 
             minimum = distance;
 
-            closest = i;
+            closest = static_cast<int>(i);
 
         }
 

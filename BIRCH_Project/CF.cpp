@@ -20,7 +20,7 @@ void CF::addPoint(vector<double> point)
     N++;
 
 
-    for(int i=0;i<point.size();i++)
+    for(size_t i=0;i<point.size();i++)
     {
 
         LS[i] += point[i];
@@ -39,7 +39,7 @@ vector<double> CF::getCentroid()
     vector<double> centroid;
 
 
-    for(int i=0;i<LS.size();i++)
+    for(size_t i=0;i<LS.size();i++)
     {
 
         centroid.push_back(LS[i]/N);

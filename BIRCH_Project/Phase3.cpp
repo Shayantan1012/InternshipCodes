@@ -26,7 +26,7 @@ double Phase3::distance(
     double sum=0;
 
 
-    for(int i=0;i<a.size();i++)
+    for(size_t i=0;i<a.size();i++)
     {
 
         sum += pow(a[i]-b[i],2);
@@ -83,7 +83,7 @@ vector<int> Phase3::cluster(
         // Assignment
 
 
-        for(int i=0;i<microClusters.size();i++)
+        for(size_t i=0;i<microClusters.size();i++)
         {
 
 
@@ -159,7 +159,7 @@ vector<int> Phase3::cluster(
 
 
 
-        for(int i=0;i<microClusters.size();i++)
+        for(size_t i=0;i<microClusters.size();i++)
         {
 
 
@@ -172,7 +172,7 @@ vector<int> Phase3::cluster(
 
 
 
-            for(int j=0;j<c.size();j++)
+            for(size_t j=0;j<c.size();j++)
             {
 
                 newCenters[id][j]+=c[j];
@@ -195,7 +195,7 @@ vector<int> Phase3::cluster(
             {
 
 
-                for(int j=0;j<newCenters[c].size();j++)
+                for(size_t j=0;j<newCenters[c].size();j++)
                 {
 
                     newCenters[c][j]/=count[c];

@@ -31,14 +31,14 @@ double bestAccuracy(
     {
         map<int,string> mapping;
 
-        for(int i=0;i<clusters.size() && i<truthLabels.size();i++)
+        for(size_t i=0;i<clusters.size() && i<truthLabels.size();i++)
         {
             mapping[clusters[i]] = truthLabels[i];
         }
 
         int correct = 0;
 
-        for(int i=0;i<predicted.size();i++)
+        for(size_t i=0;i<predicted.size();i++)
         {
             if(mapping[predicted[i]] == truth[i])
             {
@@ -187,7 +187,7 @@ int main()
 
 
 
-    for(int i=0;i<labels.size();i++)
+    for(size_t i=0;i<labels.size();i++)
     {
 
         cout<<"Micro Cluster "
@@ -215,7 +215,7 @@ vector<int> finalLabels =
 
 
 
-for(int i=0;i<finalLabels.size();i++)
+for(size_t i=0;i<finalLabels.size();i++)
 {
 
     cout<<"Point "

@@ -25,7 +25,7 @@ double Output::distance(
     double sum = 0;
 
 
-    for(int i=0;i<a.size();i++)
+    for(size_t i=0;i<a.size();i++)
     {
 
         sum += pow(a[i]-b[i],2);
@@ -73,7 +73,7 @@ vector<int> Output::assignClusters(
 
         // Compare with every final CF
 
-        for(int i=0;i<finalCFs.size();i++)
+        for(size_t i=0;i<finalCFs.size();i++)
         {
 
 
@@ -168,12 +168,12 @@ void Output::saveCSV(
 
 
 
-    for(int i=0;i<data.size();i++)
+    for(size_t i=0;i<data.size();i++)
 
     {
 
 
-        for(int j=0;j<data[i].size();j++)
+        for(size_t j=0;j<data[i].size();j++)
 
         {
 
@@ -246,12 +246,12 @@ void Output::saveCSV(
 
 
 
-    for(int i=0;i<data.size();i++)
+    for(size_t i=0;i<data.size();i++)
 
     {
 
 
-        for(int j=0;j<data[i].size();j++)
+        for(size_t j=0;j<data[i].size();j++)
 
         {
 

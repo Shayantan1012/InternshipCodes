@@ -71,7 +71,7 @@ void CFTree::insert(vector<double> point)
 
 
 
-        for(int i=0;i<point.size();i++)
+        for(size_t i=0;i<point.size();i++)
         {
 
             distance +=
@@ -169,10 +169,10 @@ void CFTree::splitRoot()
 
 
 
-    for(int i=0;i<entries.size();i++)
+    for(size_t i=0;i<entries.size();i++)
     {
 
-        for(int j=i+1;j<entries.size();j++)
+        for(size_t j=i+1;j<entries.size();j++)
         {
 
 
@@ -189,7 +189,7 @@ void CFTree::splitRoot()
 
 
 
-            for(int k=0;k<c1.size();k++)
+            for(size_t k=0;k<c1.size();k++)
             {
 
                 d+=pow(c1[k]-c2[k],2);
@@ -206,9 +206,9 @@ void CFTree::splitRoot()
 
                 maxDistance=d;
 
-                seed1=i;
+                seed1=static_cast<int>(i);
 
-                seed2=j;
+                seed2=static_cast<int>(j);
 
             }
 
@@ -246,10 +246,10 @@ void CFTree::splitRoot()
 
 
 
-    for(int i=0;i<entries.size();i++)
+    for(size_t i=0;i<entries.size();i++)
     {
 
-        if(i==seed1 || i==seed2)
+        if(static_cast<int>(i)==seed1 || static_cast<int>(i)==seed2)
             continue;
 
 
@@ -275,7 +275,7 @@ void CFTree::splitRoot()
 
 
 
-        for(int j=0;j<c.size();j++)
+        for(size_t j=0;j<c.size();j++)
         {
 
             d1+=pow(c[j]-s1[j],2);
@@ -397,7 +397,7 @@ void CFTree::printNode(CFNode* node)
         cout << "\n--- Leaf Node ---\n";
 
 
-        for(int i=0;i<cfs.size();i++)
+        for(size_t i=0;i<cfs.size();i++)
         {
 
 

@@ -13,7 +13,7 @@ void GlobalClustering::printCFs(vector<CF> cfs)
     cout<<"\n===== Phase 2 Input CFs =====\n";
 
 
-    for(int i=0;i<cfs.size();i++)
+    for(size_t i=0;i<cfs.size();i++)
     {
 
         cout<<"\nCF "

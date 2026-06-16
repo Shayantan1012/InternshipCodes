@@ -111,7 +111,7 @@ bool Dataset::loadLabeledCSV(string filename)
         vector<double> row;
 
 
-        for(int i=1;i<cells.size()-1;i++)
+        for(size_t i=1;i<cells.size()-1;i++)
         {
             row.push_back(stod(cells[i]));
         }
