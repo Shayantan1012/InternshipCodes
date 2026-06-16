@@ -1,0 +1,24 @@
+BIRCH Cluster Validation Metrics
+================================
+
+Input clustering: /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/BIRCH_Project/birch_results.csv
+No k-means is run in this evaluation.
+CDR and S_Dbw are calculated on BIRCH cluster labels only.
+
+Total points: 1900
+Number of BIRCH clusters: 2
+
+Cluster sizes:
+  Cluster 0: 1049
+  Cluster 1: 851
+
+CDR metric on BIRCH labels:
+  CDR: 1370.813796
+  Cluster 0 uniformity: 1493.388071
+  Cluster 1 uniformity: 1219.720478
+
+S_Dbw metric on BIRCH labels:
+  Scatter: 0.865624
+  Density between: 0.703448
+  S_Dbw: 1.569072
+  Density radius: 0.288933

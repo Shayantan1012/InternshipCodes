@@ -1,14 +1,14 @@
 BIRCH Clustering Evaluation Summary
 ===================================
 
-Input: C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\BIRCH_Project\birch_results.csv
+Input: /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/BIRCH_Project/birch_results.csv
 Generated SVG files:
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\confusion_matrix.svg
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\correct_vs_mismatch.svg
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\mismatch_composition.svg
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\toa_vs_frequency.svg
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\mismatch_breakdown.svg
-- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\summary_statistics.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/confusion_matrix.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/correct_vs_mismatch.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/mismatch_composition.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/toa_vs_frequency.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/mismatch_breakdown.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/summary_statistics.svg
 
 Cluster mapping: {'0': 'Emitter_1', '1': 'Emitter_2'}
 Total points: 1900
