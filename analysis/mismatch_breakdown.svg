@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="480" viewBox="0 0 580 480">
+<rect x="0.00" y="0.00" width="580.00" height="480.00" fill="#ffffff" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="290.00" y="32.00" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">Mismatch Breakdown by Type</text>
+<rect x="65.00" y="70.00" width="450.00" height="310.00" fill="#ffffff" stroke="#777" stroke-width="1" opacity="1.0"/>
+<rect x="100.00" y="352.00" width="64.00" height="0.00" fill="#ff5252" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="132.00" y="342.00" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle">0</text>
+<text x="132.00" y="392.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Emitter_1 -&gt;</text>
+<text x="132.00" y="405.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Emitter_2</text>
+<text x="132.00" y="418.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">(wrong)</text>
+<rect x="200.00" y="352.00" width="64.00" height="0.00" fill="#ff5252" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="232.00" y="342.00" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle">0</text>
+<text x="232.00" y="392.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Emitter_2 -&gt;</text>
+<text x="232.00" y="405.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Emitter_1</text>
+<text x="232.00" y="418.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">(wrong)</text>
+<rect x="300.00" y="107.00" width="64.00" height="245.00" fill="#ff9800" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="332.00" y="97.00" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle">49</text>
+<text x="332.00" y="392.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Noise -&gt;</text>
+<text x="332.00" y="405.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Cluster 0</text>
+<text x="332.00" y="418.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">(absorbed)</text>
+<rect x="400.00" y="97.00" width="64.00" height="255.00" fill="#ff9800" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="432.00" y="87.00" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#111" text-anchor="middle">51</text>
+<text x="432.00" y="392.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Noise -&gt;</text>
+<text x="432.00" y="405.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">Cluster 1</text>
+<text x="432.00" y="418.00" font-family="Arial, sans-serif" font-size="10" font-weight="normal" fill="#111" text-anchor="middle">(absorbed)</text>
+</svg>

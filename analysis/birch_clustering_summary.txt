@@ -1,0 +1,26 @@
+BIRCH Clustering Evaluation Summary
+===================================
+
+Input: C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\BIRCH_Project\birch_results.csv
+Generated SVG files:
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\confusion_matrix.svg
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\correct_vs_mismatch.svg
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\mismatch_composition.svg
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\toa_vs_frequency.svg
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\mismatch_breakdown.svg
+- C:\Users\SHAYANTAN BISWAS\Desktop\IITH_INTERNSHIP\Assignment\InternshipCodes\analysis\summary_statistics.svg
+
+Cluster mapping: {'0': 'Emitter_1', '1': 'Emitter_2'}
+Total points: 1900
+Correctly classified: 1800
+Total mismatches: 100
+Overall accuracy: 94.74%
+Non-noise accuracy: 100.00%
+Noise points: 100
+Noise % of mismatches: 100.0%
+
+Confusion Matrix
+,Emitter_1,Emitter_2
+Emitter_1,1000,0
+Emitter_2,0,800
+Noise,49,51

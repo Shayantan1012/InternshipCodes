@@ -321,4 +321,21 @@ python3 validate_clusters.py CDR/cdr_two_emitter_assignments.csv prepared_data/t
 
 
 python3 validate_clusters.py SdbW/sdbw_two_emitter_k2_assignments.csv prepared_data/two_emitter_pdw_ground_truth.csv
+
+
+python3 generate_birch_analysis.py
 ```
+
+The BIRCH analysis command creates:
+
+```text
+analysis/confusion_matrix.svg
+analysis/correct_vs_mismatch.svg
+analysis/mismatch_composition.svg
+analysis/toa_vs_frequency.svg
+analysis/mismatch_breakdown.svg
+analysis/summary_statistics.svg
+analysis/birch_clustering_summary.txt
+```
+
+Open each `.svg` file in a browser to see the separate analysis plots.
