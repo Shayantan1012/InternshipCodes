@@ -265,3 +265,60 @@ python validate_clusters.py BIRCH_Project\birch_results.csv prepared_data\two_em
 python validate_clusters.py CDR\cdr_two_emitter_assignments.csv prepared_data\two_emitter_pdw_ground_truth.csv
 python validate_clusters.py SdbW\sdbw_two_emitter_k2_assignments.csv prepared_data\two_emitter_pdw_ground_truth.csv
 ```
+
+## Ubuntu Terminal Commands
+
+If you are using Ubuntu terminal or WSL, first go to the project folder. If the
+folder is on your Windows `C:` drive, the path usually starts with `/mnt/c/`.
+
+```bash
+cd "/mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes"
+
+
+python3 prepare_two_emitter_data.py
+
+
+cd BIRCH_Project
+
+
+g++ -std=c++14 -O2 -Wall -Wextra -pedantic CF.cpp CFNode.cpp CFTree.cpp Dataset.cpp GlobalClustering.cpp main.cpp Output.cpp Phase2.cpp Phase3.cpp -o birch
+
+
+./birch
+
+
+cd ..
+
+
+cd CDR
+
+
+g++ -std=c++14 -O2 -Wall -Wextra -pedantic cdr.cpp -o cdr
+
+
+./cdr ../prepared_data/two_emitter_pdw_labeled_features.csv 6 10 42 cdr_two_emitter_assignments.csv
+
+
+cd ..
+
+
+cd SdbW
+
+
+g++ -std=c++14 -O2 -Wall -Wextra -pedantic sdbw.cpp -o sdbw
+
+
+./sdbw ../prepared_data/two_emitter_pdw_labeled_features.csv 2 2 10 42 sdbw_two_emitter_k2_assignments.csv
+
+
+cd ..
+
+
+python3 validate_clusters.py BIRCH_Project/birch_results.csv prepared_data/two_emitter_pdw_ground_truth.csv
+
+
+python3 validate_clusters.py CDR/cdr_two_emitter_assignments.csv prepared_data/two_emitter_pdw_ground_truth.csv
+
+
+python3 validate_clusters.py SdbW/sdbw_two_emitter_k2_assignments.csv prepared_data/two_emitter_pdw_ground_truth.csv
+```
