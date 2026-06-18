@@ -17,11 +17,11 @@ def load_points(path):
         reader = csv.DictReader(handle)
         for row in reader:
             points.append([
-                float(row["Feature1"]),
-                float(row["Feature2"]),
-                float(row["Feature3"]),
-                float(row["Feature4"]),
-                float(row["Feature5"]),
+                float(row["TOA_ns"]),
+                float(row["Freq_MHz"]),
+                float(row["PW_ns"]),
+                float(row["Az_deg"]),
+                float(row["El_deg"]),
             ])
             labels.append(row["Cluster"])
 

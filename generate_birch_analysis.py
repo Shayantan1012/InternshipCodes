@@ -224,8 +224,8 @@ def draw_dashboard(rows, mapping, stats):
         parts.append(line(sx, sy + i * sh / 5, sx + sw, sy + i * sh / 5, "#ececec"))
         parts.append(line(sx + i * sw / 5, sy, sx + i * sw / 5, sy + sh, "#ececec"))
     for row in rows:
-        toa = float(row["Feature1"])
-        freq = float(row["Feature2"])
+        toa = float(row["TOA_ns"])
+        freq = float(row["Freq_MHz"])
         truth = row["Ground_Truth"]
         predicted = mapping.get(row["Cluster"], row["Cluster"])
         is_correct = truth != "Noise" and predicted == truth
@@ -239,8 +239,8 @@ def draw_dashboard(rows, mapping, stats):
             parts.append(circle(x, y, 2.2, "#43a047", opacity=0.65))
         else:
             parts.append(text(x, y + 3, "x", 10, "bold", "#f44336"))
-    parts.append(text(sx + sw / 2, sy + sh + 35, "Feature1 (TOA, normalised)", 12))
-    parts.append(text(sx - 48, sy + sh / 2, "Feature2 (Freq, normalised)", 12))
+    parts.append(text(sx + sw / 2, sy + sh + 35, "TOA_ns (normalised)", 12))
+    parts.append(text(sx - 48, sy + sh / 2, "Freq_MHz (normalised)", 12))
     legend = [
         ("Emitter_1 correct", "#1e88e5", "circle"),
         ("Emitter_2 correct", "#43a047", "circle"),
@@ -414,8 +414,8 @@ def draw_scatter_svg(rows, mapping):
         body.append(line(sx + i * sw / 5, sy, sx + i * sw / 5, sy + sh, "#ececec"))
 
     for row in rows:
-        toa = float(row["Feature1"])
-        freq = float(row["Feature2"])
+        toa = float(row["TOA_ns"])
+        freq = float(row["Freq_MHz"])
         truth = row["Ground_Truth"]
         predicted = mapping.get(row["Cluster"], row["Cluster"])
         is_correct = truth != "Noise" and predicted == truth
@@ -430,8 +430,8 @@ def draw_scatter_svg(rows, mapping):
         else:
             body.append(text(x, y + 3, "x", 10, "bold", "#f44336"))
 
-    body.append(text(sx + sw / 2, sy + sh + 35, "Feature1 (TOA, normalised)", 12))
-    body.append(rotated_text(28, sy + sh / 2, "Feature2 (Freq, normalised)", 12))
+    body.append(text(sx + sw / 2, sy + sh + 35, "TOA_ns (normalised)", 12))
+    body.append(rotated_text(28, sy + sh / 2, "Freq_MHz (normalised)", 12))
     legend = [
         ("Emitter_1 correct", "#1e88e5", "circle"),
         ("Emitter_2 correct", "#43a047", "circle"),

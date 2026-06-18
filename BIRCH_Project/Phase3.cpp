@@ -139,8 +139,6 @@ vector<int> Phase3::cluster(
 
 
 
-
-
         // Update centers
 
 

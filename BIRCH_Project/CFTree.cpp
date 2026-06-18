@@ -107,9 +107,7 @@ void CFTree::insert(vector<double> point)
 
             newCF.addPoint(point);
 
-
             root->addCF(newCF);
-
 
             cout<<"Created new CF"
                 <<endl;

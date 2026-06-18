@@ -84,6 +84,8 @@ private:
     std::vector<Point> points_;
 };
 
+
+
 class Distance {
 public:
     static double squaredEuclidean(const Point& a, const Point& b) {
@@ -108,11 +110,15 @@ public:
     }
 };
 
+
+
 struct ClusteringResult {
     std::vector<std::size_t> labels;
     std::vector<Point> centers;
     double sumSquaredError = std::numeric_limits<double>::infinity();
 };
+
+
 
 class KMeans {
 public:
@@ -320,17 +326,21 @@ private:
     unsigned int seed_;
 };
 
+
+
 struct CDRScore {
     double value = 0.0;
     std::vector<double> clusterUniformities;
 };
+
+
 
 class CDRIndex {
 public:
     CDRScore evaluate(const Dataset& dataset,
                       const ClusteringResult& clustering) const {
         validate(dataset, clustering);
-
+                                        
         CDRScore score;
         score.clusterUniformities.reserve(clustering.centers.size());
         for (std::size_t cluster = 0; cluster < clustering.centers.size();
@@ -406,12 +416,16 @@ private:
     }
 };
 
+
+
 struct PartitionCandidate {
     std::size_t clusters = 0;
     ClusteringResult clustering;
     CDRScore score;
     double improvementFactor = std::numeric_limits<double>::quiet_NaN();
 };
+
+
 
 class OptimalPartitionFinder {
 public:
@@ -462,7 +476,7 @@ public:
                 break;
             }
         }
-
+    
         std::size_t bestIndex = 1;
         for (std::size_t i = 2; i <= searchEnd; ++i) {
             if (candidates[i].improvementFactor <

@@ -158,11 +158,11 @@ void Output::saveCSV(
 
     // Header
 
-    file<<"Feature1,"
-        <<"Feature2,"
-        <<"Feature3,"
-        <<"Feature4,"
-        <<"Feature5,"
+    file<<"TOA_ns,"
+        <<"Freq_MHz,"
+        <<"PW_ns,"
+        <<"Az_deg,"
+        <<"El_deg,"
         <<"Cluster\n";
 
 
@@ -235,11 +235,11 @@ void Output::saveCSV(
 
 
 
-    file<<"Feature1,"
-        <<"Feature2,"
-        <<"Feature3,"
-        <<"Feature4,"
-        <<"Feature5,"
+    file<<"TOA_ns,"
+        <<"Freq_MHz,"
+        <<"PW_ns,"
+        <<"Az_deg,"
+        <<"El_deg,"
         <<"Cluster,"
         <<"Ground_Truth\n";
 
