@@ -8,30 +8,33 @@
 <text x="75.00" y="121.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Total Points</text>
 <text x="335.00" y="121.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">1,900</text>
 <rect x="55.00" y="133.00" width="470.00" height="34.00" fill="#f8fbff" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="155.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Cluster 0 -&gt; Emitter_1</text>
-<text x="335.00" y="155.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Majority: 1000/1049</text>
+<text x="75.00" y="155.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Predicted Emitter_1</text>
+<text x="335.00" y="155.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Correct: 988/998</text>
 <rect x="55.00" y="167.00" width="470.00" height="34.00" fill="#e3f2fd" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="189.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Cluster 1 -&gt; Emitter_2</text>
-<text x="335.00" y="189.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Majority: 800/851</text>
+<text x="75.00" y="189.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Predicted Emitter_2</text>
+<text x="335.00" y="189.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Correct: 796/813</text>
 <rect x="55.00" y="201.00" width="470.00" height="34.00" fill="#f8fbff" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="223.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Correctly Classified</text>
-<text x="335.00" y="223.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">1,800</text>
+<text x="75.00" y="223.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Predicted Noise</text>
+<text x="335.00" y="223.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Correct: 73/89</text>
 <rect x="55.00" y="235.00" width="470.00" height="34.00" fill="#e3f2fd" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="257.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Total Mismatches</text>
-<text x="335.00" y="257.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">100</text>
+<text x="75.00" y="257.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Correctly Classified</text>
+<text x="335.00" y="257.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">1,857</text>
 <rect x="55.00" y="269.00" width="470.00" height="34.00" fill="#f8fbff" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="291.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Overall Accuracy</text>
-<text x="335.00" y="291.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">94.74%</text>
+<text x="75.00" y="291.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Total Mismatches</text>
+<text x="335.00" y="291.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">43</text>
 <rect x="55.00" y="303.00" width="470.00" height="34.00" fill="#e3f2fd" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="325.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Non-Noise Accuracy</text>
-<text x="335.00" y="325.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">100.00%</text>
+<text x="75.00" y="325.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Overall Accuracy</text>
+<text x="335.00" y="325.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">97.74%</text>
 <rect x="55.00" y="337.00" width="470.00" height="34.00" fill="#f8fbff" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="359.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Non-Noise Mismatches</text>
-<text x="335.00" y="359.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">0</text>
+<text x="75.00" y="359.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Non-Noise Accuracy</text>
+<text x="335.00" y="359.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">99.11%</text>
 <rect x="55.00" y="371.00" width="470.00" height="34.00" fill="#e3f2fd" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="393.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Noise Mismatches</text>
-<text x="335.00" y="393.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">100 (all noise pts)</text>
+<text x="75.00" y="393.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Non-Noise Mismatches</text>
+<text x="335.00" y="393.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">16</text>
 <rect x="55.00" y="405.00" width="470.00" height="34.00" fill="#f8fbff" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
-<text x="75.00" y="427.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Noise % of Mismatches</text>
-<text x="335.00" y="427.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">100.0%</text>
+<text x="75.00" y="427.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Noise Mismatches</text>
+<text x="335.00" y="427.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">27</text>
+<rect x="55.00" y="439.00" width="470.00" height="34.00" fill="#e3f2fd" stroke="#d0d7de" stroke-width="1" opacity="1.0"/>
+<text x="75.00" y="461.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">Noise % of Mismatches</text>
+<text x="335.00" y="461.00" font-family="Arial, sans-serif" font-size="11" font-weight="normal" fill="#111" text-anchor="start">62.8%</text>
 </svg>

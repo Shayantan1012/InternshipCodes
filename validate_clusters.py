@@ -7,12 +7,16 @@ from math import comb
 def load_clusters(path):
     with open(path, newline="") as handle:
         reader = csv.DictReader(handle)
-        if "cluster" in reader.fieldnames:
+        if "Predicted_Cluster" in reader.fieldnames:
+            column = "Predicted_Cluster"
+        elif "cluster" in reader.fieldnames:
             column = "cluster"
         elif "Cluster" in reader.fieldnames:
             column = "Cluster"
         else:
-            raise ValueError("Assignment CSV must contain a cluster or Cluster column.")
+            raise ValueError(
+                "Assignment CSV must contain Predicted_Cluster, cluster, or Cluster."
+            )
 
         return [record[column] for record in reader]
 

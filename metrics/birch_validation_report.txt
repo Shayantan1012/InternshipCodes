@@ -1,0 +1,27 @@
+BIRCH IMPLEMENTATION VALIDATION REPORT
+======================================
+
+===== OUTLIER DETECTION METRICS (LOF) =====
+TP=73 FP=16 FN=27 TN=1784
+Precision = 0.820225
+Recall = 0.73
+F1-Score = 0.772487
+
+===== CLUSTERING METRICS (BIRCH only, Emitter_1 vs Emitter_2) =====
+Correctly clustered = 1784 / 1800
+Clustering Accuracy = 0.991111
+Emitter_1 Precision=1 Recall=0.988 F1-Score=0.993964
+Emitter_2 Precision=1 Recall=0.995 F1-Score=0.997494
+Macro Precision = 1
+Macro Recall = 0.9915
+Macro F1-Score = 0.995729
+
+===== COMBINED PIPELINE METRICS (Outlier + Clustering) =====
+Correctly labeled = 1857 / 1900
+Overall Accuracy = 0.977368
+Emitter_1 Precision=0.98998 Recall=0.988 F1-Score=0.988989
+Emitter_2 Precision=0.97909 Recall=0.995 F1-Score=0.986981
+Noise Precision=0.820225 Recall=0.73 F1-Score=0.772487
+Macro Precision = 0.929765
+Macro Recall = 0.904333
+Macro F1-Score = 0.916152

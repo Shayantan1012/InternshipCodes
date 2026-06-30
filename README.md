@@ -1,46 +1,45 @@
-# BIRCH Clustering Evaluation Guide
+# BIRCH Implementation: Build, Run, and Evaluate
 
-This project runs **BIRCH clustering** on the two-emitter radar PDW dataset.
-
-Important:
-
-- BIRCH is the only clustering algorithm used.
-- CDR and S_Dbw are used only as validation metrics on the BIRCH output.
-- Do not run CDR or S_Dbw as separate clustering programs for this workflow.
-- The files inside `CDR/` and `SdbW/` are kept for reference, but the final workflow uses `evaluate_birch_metrics.py`.
-
-## Dataset Files
+The active BIRCH code is now in:
 
 ```text
-two_emitter_pdw_dataset.csv
-two_emitter_pdw_labeled.csv
+Birch-Implementation/
 ```
 
-The labeled file contains:
+`BIRCH_Project/` is the previous implementation and is no longer used by the
+root validation, metric, or analysis scripts.
 
-```text
-Emitter_1
-Emitter_2
-Noise
-```
+## Pipeline
 
-BIRCH clusters the feature data. Ground truth is used only for validation.
+The active implementation performs:
 
-## Ubuntu Terminal Commands
+1. Load the unlabeled PDW feature dataset.
+2. Normalize all five input features.
+3. Detect outliers with LOF and set them aside as `Noise`.
+4. Run BIRCH on the remaining points.
+5. Map the two BIRCH clusters to `Emitter_1` and `Emitter_2`.
+6. Merge the detected noise points back into the output.
+7. Compare predictions with ground truth.
+8. Calculate CDR and S_Dbw on the BIRCH emitter clusters only.
+9. Generate separate analysis SVG files.
 
-Run these commands line by line from Ubuntu or WSL.
+No k-means is run by the root evaluation workflow.
+
+## Ubuntu or WSL Commands
+
+Run these commands line by line:
 
 ```bash
-cd "/mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes"
+cd "/mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes"
 
 
 python3 prepare_two_emitter_data.py
 
 
-cd BIRCH_Project
+cd Birch-Implementation
 
 
-g++ -std=c++14 -O2 -Wall -Wextra -pedantic CF.cpp CFNode.cpp CFTree.cpp Dataset.cpp GlobalClustering.cpp main.cpp Output.cpp Phase2.cpp Phase3.cpp -o birch
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic main.cpp CF.cpp CFNode.cpp CFTree.cpp Dataset.cpp OutlierDetector.cpp Phase2.cpp Phase3.cpp GlobalClustering.cpp Output.cpp Metrics.cpp -o birch
 
 
 ./birch
@@ -49,7 +48,7 @@ g++ -std=c++14 -O2 -Wall -Wextra -pedantic CF.cpp CFNode.cpp CFTree.cpp Dataset.
 cd ..
 
 
-python3 validate_clusters.py BIRCH_Project/birch_results.csv prepared_data/two_emitter_pdw_ground_truth.csv
+python3 validate_clusters.py Birch-Implementation/birch_results.csv prepared_data/two_emitter_pdw_ground_truth.csv
 
 
 python3 evaluate_birch_metrics.py
@@ -58,43 +57,86 @@ python3 evaluate_birch_metrics.py
 python3 generate_birch_analysis.py
 ```
 
-## What Each Command Does
+## Main Output
 
-```bash
-python3 prepare_two_emitter_data.py
-```
-
-Prepares helper files for validation:
+The new BIRCH implementation creates:
 
 ```text
-prepared_data/two_emitter_pdw_ground_truth.csv
-prepared_data/two_emitter_pdw_labeled_features.csv
-prepared_data/two_emitter_pdw_dataset_features.csv
+Birch-Implementation/birch_results.csv
+metrics/birch_validation_report.txt
 ```
 
-```bash
-./birch
-```
+To store terminal output in a log, run `./birch > birch_run.log` instead of
+`./birch`.
 
-Runs BIRCH clustering and creates:
+The validation report is recreated automatically every time BIRCH runs. It
+contains LOF, BIRCH emitter-clustering, and combined pipeline precision,
+recall, F1-score, and accuracy results.
+
+The result CSV uses the original input column names:
 
 ```text
-BIRCH_Project/birch_results.csv
+TOA_ns,Freq_MHz,PW_ns,Az_deg,El_deg,Ground_Truth,Predicted_Cluster
 ```
 
-```bash
-python3 validate_clusters.py BIRCH_Project/birch_results.csv prepared_data/two_emitter_pdw_ground_truth.csv
+## Built-in Validation Results
+
+The new implementation currently reports:
+
+```text
+LOF Precision: 0.820225
+LOF Recall: 0.730000
+LOF F1-Score: 0.772487
+
+BIRCH non-noise clustering accuracy: 0.991111
+Emitter_1 Precision: 1.000000
+Emitter_1 Recall: 0.988000
+Emitter_1 F1-Score: 0.993964
+Emitter_2 Precision: 1.000000
+Emitter_2 Recall: 0.995000
+Emitter_2 F1-Score: 0.997494
+Clustering Macro Precision: 1.000000
+Clustering Macro Recall: 0.991500
+Clustering Macro F1-Score: 0.995729
+
+Combined pipeline accuracy: 0.977368
+Combined Macro Precision: 0.929765
+Combined Macro Recall: 0.904333
+Combined Macro F1-Score: 0.916152
 ```
 
-Validates BIRCH cluster labels against ground truth.
+The external ground-truth validator reports:
+
+```text
+Rows: 1900
+Best mapped accuracy: 97.74%
+Adjusted Rand Index: 0.953334
+```
+
+Confusion matrix:
+
+```text
+cluster,Emitter_1,Emitter_2,Noise
+Emitter_1,988,0,10
+Emitter_2,0,796,17
+Noise,12,4,73
+```
+
+## CDR and S_Dbw Metrics
+
+Run:
 
 ```bash
 python3 evaluate_birch_metrics.py
 ```
 
-Calculates CDR and S_Dbw metrics on the BIRCH cluster labels.
+This script:
 
-This does **not** run k-means.
+- reads `Birch-Implementation/birch_results.csv`
+- normalizes the raw feature values to match BIRCH's feature space
+- excludes rows predicted as `Noise` by LOF
+- calculates CDR and S_Dbw on the two BIRCH emitter clusters
+- does not run k-means
 
 Output:
 
@@ -102,11 +144,22 @@ Output:
 metrics/birch_cdr_sdbw_metrics.txt
 ```
 
+Current values:
+
+```text
+CDR: 877.720960
+Scatter: 0.874785
+Density between: 0.698413
+S_Dbw: 1.573197
+```
+
+## Separate Analysis Files
+
+Run:
+
 ```bash
 python3 generate_birch_analysis.py
 ```
-
-Creates separate SVG analysis plots.
 
 Outputs:
 
@@ -120,70 +173,13 @@ analysis/summary_statistics.svg
 analysis/birch_clustering_summary.txt
 ```
 
-## BIRCH Configuration
+## Configuration
 
-The BIRCH configuration is inside:
-
-```text
-BIRCH_Project/main.cpp
-```
-
-Current configuration:
+The main parameters remain in `Birch-Implementation/main.cpp`:
 
 ```cpp
-const string inputFile = "../two_emitter_pdw_labeled.csv";
-const bool useGroundTruth = true;
-const string outputFile = "birch_results.csv";
-const double threshold = 0.5;
-const int branchingFactor = 5;
-const int phase2MinPoints = 5;
-const int finalClusters = 2;
+int kNeighbors = 10;
+double lofThreshold = 1.5;
+double threshold = 0.5;
+int branchingFactor = 5;
 ```
-
-## Expected Validation Result
-
-Expected BIRCH validation output:
-
-```text
-Rows: 1900
-Best mapped accuracy: 94.74%
-Adjusted Rand Index: 0.897767
-```
-
-Expected confusion matrix:
-
-```text
-cluster,Emitter_1,Emitter_2,Noise
-0,1000,0,49
-1,0,800,51
-```
-
-This means:
-
-- all `Emitter_1` points are assigned to one BIRCH cluster
-- all `Emitter_2` points are assigned to another BIRCH cluster
-- noise points are absorbed into the two BIRCH clusters
-
-## Expected BIRCH Metric Output
-
-The metric file:
-
-```text
-metrics/birch_cdr_sdbw_metrics.txt
-```
-
-contains CDR and S_Dbw values calculated directly on `BIRCH_Project/birch_results.csv`.
-
-Expected values:
-
-```text
-CDR: 1370.813796
-Scatter: 0.865624
-Density between: 0.703448
-S_Dbw: 1.569072
-```
-
-Again, these metrics are calculated from BIRCH labels only.
-
-No k-means is run.
-

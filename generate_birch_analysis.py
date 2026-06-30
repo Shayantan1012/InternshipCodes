@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-RESULTS = ROOT / "BIRCH_Project" / "birch_results.csv"
+RESULTS = ROOT / "Birch-Implementation" / "birch_results.csv"
 OUT_DIR = ROOT / "analysis"
 SUMMARY_OUT = OUT_DIR / "birch_clustering_summary.txt"
 PLOT_FILES = {
@@ -23,6 +23,12 @@ def load_rows(path):
 
 
 def best_cluster_mapping(rows):
+    if rows and "Predicted_Cluster" in rows[0]:
+        return {
+            label: label
+            for label in sorted({row["Predicted_Cluster"] for row in rows})
+        }
+
     clusters = sorted({row["Cluster"] for row in rows})
     labels = sorted({row["Ground_Truth"] for row in rows if row["Ground_Truth"] != "Noise"})
 
@@ -119,12 +125,13 @@ def pie_slice(cx, cy, r, start_angle, end_angle, fill):
 
 def confusion_matrix(rows, mapping):
     truth_labels = ["Emitter_1", "Emitter_2", "Noise"]
-    pred_labels = ["Emitter_1", "Emitter_2"]
+    pred_labels = ["Emitter_1", "Emitter_2", "Noise"]
     matrix = {truth: {pred: 0 for pred in pred_labels} for truth in truth_labels}
 
     for row in rows:
         truth = row["Ground_Truth"]
-        predicted = mapping.get(row["Cluster"], row["Cluster"])
+        predicted_value = row.get("Predicted_Cluster", row.get("Cluster", ""))
+        predicted = mapping.get(predicted_value, predicted_value)
         if predicted in pred_labels and truth in truth_labels:
             matrix[truth][predicted] += 1
 
@@ -227,7 +234,8 @@ def draw_dashboard(rows, mapping, stats):
         toa = float(row["TOA_ns"])
         freq = float(row["Freq_MHz"])
         truth = row["Ground_Truth"]
-        predicted = mapping.get(row["Cluster"], row["Cluster"])
+        predicted_value = row.get("Predicted_Cluster", row.get("Cluster", ""))
+        predicted = mapping.get(predicted_value, predicted_value)
         is_correct = truth != "Noise" and predicted == truth
         x = scale(toa, 0, 1, sx + 8, sx + sw - 8)
         y = scale(freq, 0, 1, sy + sh - 8, sy + 8)
@@ -341,7 +349,7 @@ def draw_confusion_svg(rows, mapping):
         body.append(text(x0 + j * cell + cell / 2, y0 + len(truth_labels) * cell + 25, pred, 12))
     body.append(text(x0 + cell, y0 + len(truth_labels) * cell + 55, "Predicted Label", 12, "bold"))
     body.append(rotated_text(32, y0 + cell * 1.5, "Ground Truth Label", 12, "bold"))
-    return wrap_svg(570, 600, "Confusion Matrix", body)
+    return wrap_svg(700, 600, "Confusion Matrix", body)
 
 
 def draw_correct_mismatch_svg(stats):
@@ -350,7 +358,7 @@ def draw_correct_mismatch_svg(stats):
     groups = [
         ("All Points", stats["correct"], stats["mismatch"], stats["total"]),
         ("Non-Noise", stats["non_noise_correct"], stats["non_noise_mismatch"], stats["non_noise_total"]),
-        ("Noise Points", 0, stats["noise_total"], stats["noise_total"]),
+        ("Noise Points", stats["noise_correct"], stats["noise_mismatch"], stats["noise_total"]),
     ]
     max_bar = max(g[3] for g in groups)
 
@@ -387,7 +395,7 @@ def draw_pie_svg(stats):
     slices = [
         ("Correct", stats["correct"], "#4caf50"),
         ("Non-noise mismatches", stats["non_noise_mismatch"], "#ff9800"),
-        ("Noise mismatches", stats["noise_total"], "#f44336"),
+        ("Noise mismatches", stats["noise_mismatch"], "#f44336"),
     ]
     angle = -90
     for _, value, color in slices:
@@ -409,6 +417,10 @@ def draw_pie_svg(stats):
 def draw_scatter_svg(rows, mapping):
     sx, sy, sw, sh = 95, 75, 450, 320
     body = [rect(sx, sy, sw, sh, "#ffffff", "#777")]
+    toa_values = [float(row["TOA_ns"]) for row in rows]
+    freq_values = [float(row["Freq_MHz"]) for row in rows]
+    toa_min, toa_max = min(toa_values), max(toa_values)
+    freq_min, freq_max = min(freq_values), max(freq_values)
     for i in range(1, 5):
         body.append(line(sx, sy + i * sh / 5, sx + sw, sy + i * sh / 5, "#ececec"))
         body.append(line(sx + i * sw / 5, sy, sx + i * sw / 5, sy + sh, "#ececec"))
@@ -417,10 +429,11 @@ def draw_scatter_svg(rows, mapping):
         toa = float(row["TOA_ns"])
         freq = float(row["Freq_MHz"])
         truth = row["Ground_Truth"]
-        predicted = mapping.get(row["Cluster"], row["Cluster"])
+        predicted_value = row.get("Predicted_Cluster", row.get("Cluster", ""))
+        predicted = mapping.get(predicted_value, predicted_value)
         is_correct = truth != "Noise" and predicted == truth
-        x = scale(toa, 0, 1, sx + 8, sx + sw - 8)
-        y = scale(freq, 0, 1, sy + sh - 8, sy + 8)
+        x = scale(toa, toa_min, toa_max, sx + 8, sx + sw - 8)
+        y = scale(freq, freq_min, freq_max, sy + sh - 8, sy + 8)
         if truth == "Noise":
             body.append(text(x, y + 3, "x", 9, "normal", "#ff9800"))
         elif is_correct and truth == "Emitter_1":
@@ -430,8 +443,8 @@ def draw_scatter_svg(rows, mapping):
         else:
             body.append(text(x, y + 3, "x", 10, "bold", "#f44336"))
 
-    body.append(text(sx + sw / 2, sy + sh + 35, "TOA_ns (normalised)", 12))
-    body.append(rotated_text(28, sy + sh / 2, "Freq_MHz (normalised)", 12))
+    body.append(text(sx + sw / 2, sy + sh + 35, "TOA_ns", 12))
+    body.append(rotated_text(28, sy + sh / 2, "Freq_MHz", 12))
     legend = [
         ("Emitter_1 correct", "#1e88e5", "circle"),
         ("Emitter_2 correct", "#43a047", "circle"),
@@ -453,10 +466,10 @@ def draw_breakdown_svg(stats):
     mx, my, mw, mh = 65, 70, 450, 310
     body = [rect(mx, my, mw, mh, "#ffffff", "#777")]
     breakdown = [
-        ("Emitter_1 ->\nEmitter_2\n(wrong)", stats["emitter_1_wrong"], "#ff5252"),
-        ("Emitter_2 ->\nEmitter_1\n(wrong)", stats["emitter_2_wrong"], "#ff5252"),
-        ("Noise ->\nCluster 0\n(absorbed)", stats["noise_by_cluster"].get("0", 0), "#ff9800"),
-        ("Noise ->\nCluster 1\n(absorbed)", stats["noise_by_cluster"].get("1", 0), "#ff9800"),
+        ("Emitter_1\nmismatches", stats["emitter_1_wrong"], "#ff5252"),
+        ("Emitter_2\nmismatches", stats["emitter_2_wrong"], "#ff5252"),
+        ("Noise ->\nEmitter_1", stats["noise_by_cluster"].get("Emitter_1", 0), "#ff9800"),
+        ("Noise ->\nEmitter_2", stats["noise_by_cluster"].get("Emitter_2", 0), "#ff9800"),
     ]
     max_mismatch = max([value for _, value, _ in breakdown] + [1])
     for idx, (label, value, color) in enumerate(breakdown):
@@ -473,14 +486,15 @@ def draw_table_svg(stats):
     body = []
     rows_table = [
         ("Total Points", f"{stats['total']:,}"),
-        ("Cluster 0 -> Emitter_1", f"Majority: {stats['cluster_majorities'].get('0', '')}"),
-        ("Cluster 1 -> Emitter_2", f"Majority: {stats['cluster_majorities'].get('1', '')}"),
+        ("Predicted Emitter_1", f"Correct: {stats['cluster_majorities'].get('Emitter_1', '')}"),
+        ("Predicted Emitter_2", f"Correct: {stats['cluster_majorities'].get('Emitter_2', '')}"),
+        ("Predicted Noise", f"Correct: {stats['cluster_majorities'].get('Noise', '')}"),
         ("Correctly Classified", f"{stats['correct']:,}"),
         ("Total Mismatches", f"{stats['mismatch']:,}"),
         ("Overall Accuracy", f"{stats['overall_accuracy']:.2f}%"),
         ("Non-Noise Accuracy", f"{stats['non_noise_accuracy']:.2f}%"),
         ("Non-Noise Mismatches", f"{stats['non_noise_mismatch']:,}"),
-        ("Noise Mismatches", f"{stats['noise_total']:,} (all noise pts)"),
+        ("Noise Mismatches", f"{stats['noise_mismatch']:,}"),
         ("Noise % of Mismatches", f"{stats['noise_mismatch_pct']:.1f}%"),
     ]
     tx, ty, tw, row_h = 55, 65, 470, 34
@@ -509,13 +523,15 @@ def main():
     emitter_2_wrong = 0
 
     for row in rows:
-        cluster = row["Cluster"]
+        cluster = row.get("Predicted_Cluster", row.get("Cluster", ""))
         truth = row["Ground_Truth"]
         predicted = mapping.get(cluster, cluster)
         cluster_counts[cluster] = cluster_counts.get(cluster, 0) + 1
 
         if truth == "Noise":
             noise_by_cluster[cluster] = noise_by_cluster.get(cluster, 0) + 1
+            if predicted == truth:
+                correct += 1
             continue
 
         non_noise_total += 1
@@ -529,6 +545,8 @@ def main():
 
     total = len(rows)
     noise_total = sum(noise_by_cluster.values())
+    noise_correct = noise_by_cluster.get("Noise", 0)
+    noise_mismatch = noise_total - noise_correct
     non_noise_mismatch = non_noise_total - non_noise_correct
     mismatch = total - correct
     stats = {
@@ -539,19 +557,25 @@ def main():
         "non_noise_correct": non_noise_correct,
         "non_noise_mismatch": non_noise_mismatch,
         "noise_total": noise_total,
+        "noise_correct": noise_correct,
+        "noise_mismatch": noise_mismatch,
         "noise_by_cluster": noise_by_cluster,
         "emitter_1_wrong": emitter_1_wrong,
         "emitter_2_wrong": emitter_2_wrong,
         "cluster_counts": cluster_counts,
         "overall_accuracy": 100 * correct / total if total else 0,
         "non_noise_accuracy": 100 * non_noise_correct / non_noise_total if non_noise_total else 0,
-        "noise_mismatch_pct": 100 * noise_total / mismatch if mismatch else 0,
+        "noise_mismatch_pct": 100 * noise_mismatch / mismatch if mismatch else 0,
     }
 
     truth_labels, pred_labels, matrix = confusion_matrix(rows, mapping)
     cluster_majorities = {}
     for cluster, label in mapping.items():
-        count = sum(row["Cluster"] == cluster and row["Ground_Truth"] == label for row in rows)
+        count = sum(
+            row.get("Predicted_Cluster", row.get("Cluster", "")) == cluster
+            and row["Ground_Truth"] == label
+            for row in rows
+        )
         cluster_majorities[cluster] = f"{count}/{cluster_counts.get(cluster, 0)}"
     stats["cluster_majorities"] = cluster_majorities
 
@@ -581,6 +605,8 @@ def main():
         handle.write(f"Overall accuracy: {stats['overall_accuracy']:.2f}%\n")
         handle.write(f"Non-noise accuracy: {stats['non_noise_accuracy']:.2f}%\n")
         handle.write(f"Noise points: {noise_total}\n")
+        handle.write(f"Correctly detected noise: {noise_correct}\n")
+        handle.write(f"Noise mismatches: {noise_mismatch}\n")
         handle.write(f"Noise % of mismatches: {stats['noise_mismatch_pct']:.1f}%\n\n")
         handle.write("Confusion Matrix\n")
         handle.write("," + ",".join(pred_labels) + "\n")

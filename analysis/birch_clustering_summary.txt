@@ -1,26 +1,28 @@
 BIRCH Clustering Evaluation Summary
 ===================================
 
-Input: /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/BIRCH_Project/birch_results.csv
+Input: /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/Birch-Implementation/birch_results.csv
 Generated SVG files:
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/confusion_matrix.svg
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/correct_vs_mismatch.svg
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/mismatch_composition.svg
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/toa_vs_frequency.svg
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/mismatch_breakdown.svg
-- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/Assignment/InternshipCodes/analysis/summary_statistics.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/confusion_matrix.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/correct_vs_mismatch.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/mismatch_composition.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/toa_vs_frequency.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/mismatch_breakdown.svg
+- /mnt/c/Users/SHAYANTAN BISWAS/Desktop/IITH_INTERNSHIP/InternshipCodes/analysis/summary_statistics.svg
 
-Cluster mapping: {'0': 'Emitter_1', '1': 'Emitter_2'}
+Cluster mapping: {'Emitter_1': 'Emitter_1', 'Emitter_2': 'Emitter_2', 'Noise': 'Noise'}
 Total points: 1900
-Correctly classified: 1800
-Total mismatches: 100
-Overall accuracy: 94.74%
-Non-noise accuracy: 100.00%
+Correctly classified: 1857
+Total mismatches: 43
+Overall accuracy: 97.74%
+Non-noise accuracy: 99.11%
 Noise points: 100
-Noise % of mismatches: 100.0%
+Correctly detected noise: 73
+Noise mismatches: 27
+Noise % of mismatches: 62.8%
 
 Confusion Matrix
-,Emitter_1,Emitter_2
-Emitter_1,1000,0
-Emitter_2,0,800
-Noise,49,51
+,Emitter_1,Emitter_2,Noise
+Emitter_1,988,0,12
+Emitter_2,0,796,4
+Noise,10,17,73

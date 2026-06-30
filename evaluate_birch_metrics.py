@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-INPUT = ROOT / "BIRCH_Project" / "birch_results.csv"
+INPUT = ROOT / "Birch-Implementation" / "birch_results.csv"
 OUT_DIR = ROOT / "metrics"
 SUMMARY_OUT = OUT_DIR / "birch_cdr_sdbw_metrics.txt"
 
@@ -23,7 +23,7 @@ def load_points(path):
                 float(row["Az_deg"]),
                 float(row["El_deg"]),
             ])
-            labels.append(row["Cluster"])
+            labels.append(row["Predicted_Cluster"])
 
     return points, labels
 
@@ -57,6 +57,19 @@ def group_by_cluster(points, labels):
     for point, label in zip(points, labels):
         clusters.setdefault(label, []).append(point)
     return clusters
+
+
+def normalize(points):
+    columns = list(zip(*points))
+    minimums = [min(column) for column in columns]
+    maximums = [max(column) for column in columns]
+    return [
+        [
+            0.0 if high == low else (value - low) / (high - low)
+            for value, low, high in zip(point, minimums, maximums)
+        ]
+        for point in points
+    ]
 
 
 def calculate_cdr(points, labels):
@@ -158,6 +171,14 @@ def calculate_sdbw(points, labels):
 
 def main():
     points, labels = load_points(INPUT)
+    points = normalize(points)
+    birch_rows = [
+        (point, label)
+        for point, label in zip(points, labels)
+        if label != "Noise"
+    ]
+    points = [point for point, _ in birch_rows]
+    labels = [label for _, label in birch_rows]
     clusters = group_by_cluster(points, labels)
     cdr_value, cdr_uniformities = calculate_cdr(points, labels)
     sdbw = calculate_sdbw(points, labels)
@@ -169,7 +190,8 @@ def main():
         handle.write("================================\n\n")
         handle.write(f"Input clustering: {INPUT}\n")
         handle.write("No k-means is run in this evaluation.\n")
-        handle.write("CDR and S_Dbw are calculated on BIRCH cluster labels only.\n\n")
+        handle.write("LOF-predicted Noise rows are excluded.\n")
+        handle.write("CDR and S_Dbw are calculated on BIRCH emitter labels only.\n\n")
         handle.write(f"Total points: {len(points)}\n")
         handle.write(f"Number of BIRCH clusters: {len(clusters)}\n\n")
 

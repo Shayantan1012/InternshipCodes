@@ -1,23 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="570" height="600" viewBox="0 0 570 600">
-<rect x="0.00" y="0.00" width="570.00" height="600.00" fill="#ffffff" stroke="none" stroke-width="1" opacity="1.0"/>
-<text x="285.00" y="32.00" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">Confusion Matrix</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="600" viewBox="0 0 700 600">
+<rect x="0.00" y="0.00" width="700.00" height="600.00" fill="#ffffff" stroke="none" stroke-width="1" opacity="1.0"/>
+<text x="350.00" y="32.00" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111" text-anchor="middle">Confusion Matrix</text>
 <text x="152.00" y="147.50" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="end">Emitter_1</text>
 <rect x="170.00" y="70.00" width="145.00" height="145.00" fill="rgb(80,115,190)" stroke="white" stroke-width="2" opacity="1.0"/>
-<text x="242.50" y="148.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">1000</text>
+<text x="242.50" y="148.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">988</text>
 <rect x="315.00" y="70.00" width="145.00" height="145.00" fill="#f4f8ff" stroke="white" stroke-width="2" opacity="1.0"/>
 <text x="387.50" y="148.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">0</text>
+<rect x="460.00" y="70.00" width="145.00" height="145.00" fill="rgb(228,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="532.50" y="148.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">12</text>
 <text x="152.00" y="292.50" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="end">Emitter_2</text>
 <rect x="170.00" y="215.00" width="145.00" height="145.00" fill="#f4f8ff" stroke="white" stroke-width="2" opacity="1.0"/>
 <text x="242.50" y="293.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">0</text>
-<rect x="315.00" y="215.00" width="145.00" height="145.00" fill="rgb(110,145,190)" stroke="white" stroke-width="2" opacity="1.0"/>
-<text x="387.50" y="293.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">800</text>
+<rect x="315.00" y="215.00" width="145.00" height="145.00" fill="rgb(109,144,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="387.50" y="293.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">796</text>
+<rect x="460.00" y="215.00" width="145.00" height="145.00" fill="rgb(229,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="532.50" y="293.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">4</text>
 <text x="152.00" y="437.50" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="end">Noise</text>
-<rect x="170.00" y="360.00" width="145.00" height="145.00" fill="rgb(222,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
-<text x="242.50" y="438.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">49</text>
-<rect x="315.00" y="360.00" width="145.00" height="145.00" fill="rgb(222,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
-<text x="387.50" y="438.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">51</text>
+<rect x="170.00" y="360.00" width="145.00" height="145.00" fill="rgb(228,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="242.50" y="438.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">10</text>
+<rect x="315.00" y="360.00" width="145.00" height="145.00" fill="rgb(227,255,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="387.50" y="438.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">17</text>
+<rect x="460.00" y="360.00" width="145.00" height="145.00" fill="rgb(218,253,190)" stroke="white" stroke-width="2" opacity="1.0"/>
+<text x="532.50" y="438.50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#123" text-anchor="middle">73</text>
 <text x="242.50" y="530.00" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="middle">Emitter_1</text>
 <text x="387.50" y="530.00" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="middle">Emitter_2</text>
+<text x="532.50" y="530.00" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#111" text-anchor="middle">Noise</text>
 <text x="315.00" y="560.00" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#111" text-anchor="middle">Predicted Label</text>
 <text x="32.00" y="287.50" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#111" text-anchor="middle" transform="rotate(-90 32.00 287.50)">Ground Truth Label</text>
 </svg>
